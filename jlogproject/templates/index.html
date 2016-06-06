@@ -1,8 +1,10 @@
 {% extends "_base_.html" %}
+{% load my_markdown %}
+
 {% block content %}
 {% for blog in blogs %}
-    <h2>{{ blog.title }}</h2>
+    <h2>{{ blog.title }}</h2> <a href="/write/{{ blog.id }}">编辑</a>
     <p>{{ blog.timestamp }}</p>
-    <p>{{ blog.content }}</p>
+    <p>{{ blog.content| my_markdown | truncatewords:20  }} <a href="/detail/{{ blog.id }}">更多</a></p>
 {% endfor%}
 {% endblock %}

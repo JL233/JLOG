@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'jlog',
+    'jlog.templatetags.my_markdown'
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -50,7 +51,7 @@ MIDDLEWARE_CLASSES = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'untitled4.urls'
+ROOT_URLCONF = 'jlogproject.urls'
 
 TEMPLATES = [
     {
@@ -69,7 +70,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'untitled4.wsgi.application'
+WSGI_APPLICATION = 'jlogproject.wsgi.application'
 
 
 # Database
