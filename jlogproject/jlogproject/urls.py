@@ -16,14 +16,15 @@ Including another URLconf
 from django.conf.urls import url
 from django.contrib import admin
 from django.conf import settings
-from jlog.views import *
+from jlog import views
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^home/', home),
-    url(r'^create/$', create),
-    url(r'^add/$', add),
-    url(r'^write/(?P<id>\d+)/$', write),
-    url(r'^detail/(?P<id>\d+)/$', detail),
+    url(r'^home/', views.home,{'template_name': 'index.html'}),
+    url(r'^create/$', views.create,{'template_name': 'write.html'}),
+    url(r'^add/$', views.add,{'template_name': 'blog.html'}),
+    url(r'^write/(?P<id>\d+)/$', views.write,{'template_name': 'write.html'}),
+    url(r'^detail/(?P<id>\d+)/$', views.detail,{'template_name': 'blog.html'}),
+    url(r'delete/(?P<id>\d+)/$',views.delete,{'template_name': 'index.html'}),
     url( r'^static/(?P<path>.*)$', 'django.views.static.serve',{ 'document_root': settings.STATIC_ROOT }),
 ]
