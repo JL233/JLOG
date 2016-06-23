@@ -2,13 +2,28 @@ from django.http import Http404
 from django.shortcuts import render
 from django.shortcuts import render_to_response
 from jlog.models import Blog
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 # Create your views here.
 def create(request,template_name):
     return render_to_response(template_name)
 def home(request,template_name):
-    blogs = Blog.objects.all()
-    return render_to_response(template_name, {'blogs': blogs})
+
+    blog_list = Blog.objects.all()
+    paginator = Paginator(blog_list, 5)  # Show 25 contacts per page
+
+    page = request.GET.get('page')
+    try:
+        blogs = paginator.page(page)
+    except PageNotAnInteger:
+        # If page is not an integer, deliver first page.
+        blogs = paginator.page(1)
+    except EmptyPage:
+        # If page is out of range (e.g. 9999), deliver last page of results.
+        blogs = paginator.page(paginator.num_pages)
+
+    return render_to_response(template_name, {"blogs": blogs})
+
 def add(request,template_name):
     if request.method == "POST":
         if "id" in request.POST:

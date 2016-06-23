@@ -1,39 +1,6 @@
 {% extends "_base_.html" %}
 {% block beforehead %}
-    <script type='text/javascript'>
-        $(document).ready(function() {
-            if($(window).width()>769){
-                $('.navbar .dropdown ').hover(function() {
-                    $(this).find('.dropdown-menu').first().stop(true, true).delay(250).slideDown();
 
-                }, function() {
-                    $(this).find('.dropdown-menu').first().stop(true, true).delay(100).slideUp();
-
-                });
-                $('.navbar .dropdown > a').click(function(){
-                    location.href = this.href;
-                });
-
-
-                $('.input-group-btn').hover(function() {
-                    $(this).find('.dropdown-menu').first().stop(true, true).delay(250).slideDown();
-
-                }, function() {
-                    $(this).find('.dropdown-menu').first().stop(true, true).delay(100).slideUp();
-
-                });
-                $('.input-group-btn > div >a').click(function(){
-                    console.log($('#category'))
-                    //innerHTML
-                    $('#btn_category').html(this.innerHTML)
-                    //value
-                    $('#category').val(this.innerHTML)
-                    $('.input-group-btn > div').slideUp();
-                });
-            }
-
-        });
-    </script>
 {% endblock %}
 {% block content %}
     <div class="container">
