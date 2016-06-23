@@ -2,22 +2,27 @@
 {% load my_markdown %}
 
 {% block content %}
-{% for blog in blogs %}
-    <h4><a href="/detail/{{ blog.id }}">{{ blog.title }}</a> <button type="button" onclick="location.href='/delete/{{ blog.id }}';" class="close pull-right" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button><h4>
-    <p>{{ blog.timestamp | date:'Y/m/d' }} <a href="/write/{{ blog.id }}">编辑</a>  
-    {{ blog.content  | my_markdown | linebreaks | truncatewords_html:"30" }}
-{% endfor%}
-    {% if blogs.has_previous %}
-        <a class='paginator' title='上一页' href='?page={{ blogs.previous_page_number }}'><span>&lt;&lt;</span></a>
- {% endif %}
- {% for page in blogs.paginator.page_range %}
-     {% if page == blogs.number %}
-         <span>{{ page }}</span>
-     {% else %}
-         <a class='paginator' href='?page={{ page }}' title='{{ page }}'><span>{{ page }}</span></a>
-     {% endif %}
- {% endfor %}
- {% if blogs.has_next %}
-     <a class='paginator' title='下一页' href='?page={{ blogs.next_page_number }}'><span>&gt;&gt;</span></a>
- {% endif %}
+    {% for blog in blogs %}
+        <h4><a href="/detail/{{ blog.id }}">{{ blog.title }}</a>
+        <button type="button" onclick="location.href='/delete/{{ blog.id }}';" class="close pull-right"
+                data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4>
+        <p>{{ blog.timestamp | date:'Y/m/d' }} <a href="/write/{{ blog.id }}">编辑</a>
+        {{ blog.content  | my_markdown | linebreaks | truncatewords_html:"30" }}
+    {% endfor %}
+    <div style="text-align:right">
+        {% if blogs.has_previous %}
+            <a class='paginator' title='上一页' href='?page={{ blogs.previous_page_number }}'><span>&lt;&lt;</span></a>
+        {% endif %}
+        {% for page in blogs.paginator.page_range %}
+            {% if page == blogs.number %}
+                <span>{{ page }}</span>
+            {% else %}
+                <a class='paginator' href='?page={{ page }}' title='{{ page }}'><span>{{ page }}</span></a>
+            {% endif %}
+        {% endfor %}
+        {% if blogs.has_next %}
+            <a class='paginator' title='下一页' href='?page={{ blogs.next_page_number }}'><span>&gt;&gt;</span></a>
+        {% endif %}
+    </div>
 {% endblock %}
