@@ -1,9 +1,9 @@
-/* GLOBAL STYLES
+﻿/* GLOBAL STYLES
 -------------------------------------------------- */
 /* Padding below the footer and lighter body text */
 
 body {
-  padding-top: 5rem;
+  padding-top: 80px;
   color: #5a5a5a;
 }
 
@@ -13,7 +13,7 @@ body {
 
 /* Carousel base class */
 .carousel {
-  margin-bottom: 4rem;
+  margin-bottom: 60px;
 }
 /* Since positioning the image, we need to help out the caption */
 .carousel-caption {

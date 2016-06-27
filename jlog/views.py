@@ -11,7 +11,6 @@ def home(request,template_name):
 
     blog_list = Blog.objects.all()
     paginator = Paginator(blog_list, 5)  # Show 25 contacts per page
-
     page = request.GET.get('page')
     try:
         blogs = paginator.page(page)
@@ -21,7 +20,7 @@ def home(request,template_name):
     except EmptyPage:
         # If page is out of range (e.g. 9999), deliver last page of results.
         blogs = paginator.page(paginator.num_pages)
-
+    print(type(blogs))
     return render_to_response(template_name, {"blogs": blogs})
 
 def add(request,template_name):
