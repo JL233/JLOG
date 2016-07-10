@@ -3,6 +3,7 @@ from django.shortcuts import render
 from django.shortcuts import render_to_response
 from jlog.models import Blog
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.db.models import Q
 
 # Create your views here.
 def create(request,template_name):
@@ -62,3 +63,15 @@ def delete(request,id,template_name):
     except Blog.DoesNotExist:
         raise Http404
     return render(request, template_name, {'blog': blog})
+
+def search(request,template_name):
+    print("begin search...")
+    if request.method == "POST":
+        if "keywords" in request.POST:
+            print(request.POST)
+            keywords=request.POST["keywords"]
+            # 模糊查询
+            blogs = Blog.objects.filter(Q(title__contains=keywords) | Q(category__contains=keywords)| Q(content__contains=keywords))
+    if not blogs:
+        blogs = Blog.objects.all()
+    return render_to_response(template_name, {"blogs": blogs})

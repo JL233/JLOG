@@ -21,6 +21,7 @@ from jlog import views
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^home/', views.home,{'template_name': 'index.html'}),
+    url(r'^search/', views.search,{'template_name': 'index.html'}),
     url(r'^create/$', views.create,{'template_name': 'write.html'}),
     url(r'^add/$', views.add,{'template_name': 'blog.html'}),
     url(r'^write/(?P<id>\d+)/$', views.write,{'template_name': 'write.html'}),
