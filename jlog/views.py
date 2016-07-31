@@ -66,12 +66,11 @@ def delete(request,id,template_name):
 
 def search(request,template_name):
     print("begin search...")
+    blogs=None
     if request.method == "POST":
         if "keywords" in request.POST:
             print(request.POST)
             keywords=request.POST["keywords"]
             # 模糊查询
             blogs = Blog.objects.filter(Q(title__contains=keywords) | Q(category__contains=keywords)| Q(content__contains=keywords))
-    if not blogs:
-        blogs = Blog.objects.all()
     return render_to_response(template_name, {"blogs": blogs})
