@@ -69,7 +69,6 @@ def search(request,template_name):
     blogs=None
     if request.method == "POST":
         if "keywords" in request.POST:
-            print(request.POST)
             keywords=request.POST["keywords"]
             # 模糊查询
             blogs = Blog.objects.filter(Q(title__contains=keywords) | Q(category__contains=keywords)| Q(content__contains=keywords))
